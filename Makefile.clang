@@ -1,0 +1,13 @@
+CC=clang++
+CFLAGS=-Wall -g
+CLANG_FLAGS=$(shell llvm-config --cxxflags --ldflags)
+CLANG_CC_ARGS=cc_args.py
+
+all: carnagon clang_complete clang_format
+
+carnagon:
+	$(CC) $(CLFAGS) $(CLANG_FLAGS) main.cpp -o carnagon
+clang_complete:
+	$(CLANG_CC_ARGS) echo $(CLFAGS) $(CLANG_FLAGS)
+clang_format:
+	clang-format -style=llvm -dump-config > .clang-format
