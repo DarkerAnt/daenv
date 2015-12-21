@@ -21,7 +21,7 @@
    t)
     (package-initialize))
 
-;; [use-package] bootstrap
+;; use-package
 (setq package-list '(use-package))
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
@@ -80,3 +80,26 @@
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
     (add-hook 'irony-mode-hook 'irony-eldoc)
     (add-hook 'irony-mode-hook 'global-company-mode))
+
+;; tags
+(use-package helm
+  :ensure t)
+
+(use-package helm-gtags
+  :ensure t
+  :init
+  ;; Enable helm-gtags-mode
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+  (add-hook 'java-mode-hook 'helm-gtags-mode)
+  ;; remove conflicting evil mode keybindings
+  (eval-after-load "evil-maps"
+    (define-key evil-motion-state-map "\C-]" nil))
+  ;; config options
+  (setq
+   helm-gtags-use-input-at-cursor t
+   helm-gtags-auto-update t
+   ;;helm-gtags-display-style 'detail
+   helm-gtags-pulse-at-cursor t
+   helm-gtags-suggested-key-mapping t))

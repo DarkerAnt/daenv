@@ -11,6 +11,8 @@ function link_file() {
 
 # [init env]
 mkdir ~/src
+# compilers and interpreters
+install_pkg gcc g++ clang python3
 
 # [zsh]
 pkg_install zsh
@@ -20,6 +22,7 @@ link_file .zshrc, ~/
 
 # [emacs]
 pkg_install emacs
+pkg_install global global-ctags
 # clang format
 git clone https://github.com/llvm-mirror/clang.git ~/src/
 link_file .emacs, ~/
