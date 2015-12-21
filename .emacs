@@ -69,6 +69,8 @@
     (add-hook 'c++-mode-hook 'irony-mode)
     (add-hook 'c-mode-hook 'irony-mode)
     (add-hook 'objc-mode-hook 'irony-mode)
+    (add-hook 'python-mode-hook 'irony-mode)
+    (add-hook 'asm-mode-hook 'irony-mode)
     ;; replace the `completion-at-point' and `complete-symbol' bindings in
     ;; irony-mode's buffers by irony-mode's function
     (defun my-irony-mode-hook ()
@@ -88,18 +90,39 @@
 (use-package helm-gtags
   :ensure t
   :init
-  ;; Enable helm-gtags-mode
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
-  (add-hook 'java-mode-hook 'helm-gtags-mode)
-  ;; remove conflicting evil mode keybindings
-  (eval-after-load "evil-maps"
-    (define-key evil-motion-state-map "\C-]" nil))
-  ;; config options
-  (setq
-   helm-gtags-use-input-at-cursor t
-   helm-gtags-auto-update t
-   ;;helm-gtags-display-style 'detail
-   helm-gtags-pulse-at-cursor t
-   helm-gtags-suggested-key-mapping t))
+    ;; Enable helm-gtags-mode
+    (add-hook 'c-mode-hook 'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    (add-hook 'java-mode-hook 'helm-gtags-mode)
+    ;; remove conflicting evil mode keybindings
+    (eval-after-load "evil-maps"
+      (define-key evil-motion-state-map "\C-]" nil))
+    ;; config options
+    (setq
+     helm-gtags-use-input-at-cursor t
+     helm-gtags-auto-update t
+     ;;helm-gtags-display-style 'detail
+     helm-gtags-pulse-at-cursor t
+     helm-gtags-suggested-key-mapping t))
+
+;; smart parethesis
+(use-package smartparens-config
+  :ensure smartparens
+  :init
+    (add-hook 'c++-mode-hook #'smartparens-mode)
+    (add-hook 'c-mode-hook #'smartparens-mode)
+    (add-hook 'objc-mode-hook #'smartparens-mode)
+    (add-hook 'python-mode-hook #'smartparens-mode)
+    (add-hook 'asm-mode-hook #'smartparens-mode)
+    (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+    ;; config options
+    (setq
+     ;;smartparens-strict-mode t
+     sp-highlight-pair-overlay nil
+     ;;sp-highlight-wrap-overlay nil
+     sp-highlight-wrap-tag-overlay nil))
+
+(use-package evil-smartparens
+  :ensure t
+  :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
