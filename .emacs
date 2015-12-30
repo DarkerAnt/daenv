@@ -69,8 +69,6 @@
     (add-hook 'c++-mode-hook 'irony-mode)
     (add-hook 'c-mode-hook 'irony-mode)
     (add-hook 'objc-mode-hook 'irony-mode)
-    (add-hook 'python-mode-hook 'irony-mode)
-    (add-hook 'asm-mode-hook 'irony-mode)
     ;; replace the `completion-at-point' and `complete-symbol' bindings in
     ;; irony-mode's buffers by irony-mode's function
     (defun my-irony-mode-hook ()
@@ -80,6 +78,7 @@
 	'irony-completion-at-point-async))
     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+    (add-hook 'irony-mode-hook 'flycheck-mode)
     (add-hook 'irony-mode-hook 'irony-eldoc)
     (add-hook 'irony-mode-hook 'global-company-mode))
 
