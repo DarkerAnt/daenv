@@ -3,6 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
  '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -32,6 +35,17 @@
   (require 'use-package))
 (require 'diminish) ;; if you use :diminish
 (require 'bind-key) ;; if you use any :bind variant
+
+;; [colors]
+;; solarized color theme
+(use-package color-theme-solarized
+  :ensure t
+  :defer t
+  :init
+    (setq frame-background-mode 'dark)
+    (setq solarized-use-terminal-theme t)
+    (show-paren-mode 1)
+    (load-theme 'solarized))
 
 ;; [evil mode]
 (use-package evil
