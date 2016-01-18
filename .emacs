@@ -52,6 +52,13 @@
   :ensure t
   :init (evil-mode 1))
 
+;; relative line numbers
+(use-package linum-relative
+  :ensure t
+  :config
+    (global-linum-mode t)
+    (linum-relative-on))
+
 ;; [clang]
 ;; clang format
 (load (concat (file-name-as-directory (getenv "CLANG_SRC_PATH")) "tools/clang-format/clang-format.el"))
@@ -73,6 +80,7 @@
       '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
 ;; display symbol and function documentation
+;; This seems abandoned. Look here for fix https://github.com/josteink/irony-eldoc
 (use-package irony-eldoc
   :ensure t)
 
