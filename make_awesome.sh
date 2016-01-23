@@ -20,6 +20,9 @@ pkg_install zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 link_file .zshrc, ~/
 
+# [tmux]
+link_file .tmux ~/
+
 # [emacs]
 pkg_install emacs
 pkg_install global global-ctags
