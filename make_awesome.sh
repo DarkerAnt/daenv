@@ -21,7 +21,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 link_file .zshrc, ~/
 
 # [tmux]
-link_file .tmux ~/
+link_file .tmux.conf ~/
 
 # [emacs]
 pkg_install emacs
