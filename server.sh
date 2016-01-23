@@ -2,10 +2,8 @@
 
 source utils/install.sh
 
-# [init env]
-mkdir ~/src
 # compilers and interpreters
-pkg_install gcc g++ clang python3
+pkg_install python3
 
 # [zsh]
 pkg_install zsh
@@ -18,11 +16,4 @@ link_file .tmux.conf ~/
 
 # [emacs]
 pkg_install emacs
-pkg_install global global-ctags
-# clang format
-git clone https://github.com/llvm-mirror/clang.git ~/src/
 link_file .emacs, ~/
-
-# [i3]
-pkg_install i3
-link_file .i3 ~/

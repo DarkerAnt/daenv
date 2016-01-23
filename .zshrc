@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias emacs='emacs -nw'
 
-export CLANG_SRC_PATH=/home/avardaro/src/clang
+export CLANG_SRC_PATH=~/src/clang
 
 function source() {
     if [[ $# -eq 0 ]]; then

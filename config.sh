@@ -1,0 +1,3 @@
+PKG_MGR=dnf
+OS_NAME="fedora"
+OS_VERSION="23"
