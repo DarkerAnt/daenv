@@ -14,6 +14,10 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 83 :width normal)))))
 
+;; tabs as spaces
+(setq indent-tabes-mode nil)
+(setq-default tab-width 4)
+
 ;; [package management]
 ;; MELPA
 (when (>= emacs-major-version 24)
