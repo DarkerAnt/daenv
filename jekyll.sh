@@ -8,13 +8,16 @@ source ./nginx.sh
 
 # [jekyll deps]
 pkg_install gcc ruby ruby-devel rubygems
+if [ "$OS_NAME" == "fedora" ]; then
+  pkg_install redhat-rpm-config
+fi
 
 # [jekyll]
 sudo gem install jekyll
 
 # [example use]
-# mkdir ~/blog
 # create files and dirs as shown here: http://jekyllrb.com/docs/structure/
+# $ jekyll new blog
 # .
 # ├── _config.yml
 # ├── _drafts
@@ -35,4 +38,9 @@ sudo gem install jekyll
 #     ├── .jekyll-metadata
 #     └── index.html
 
-# jekyll build --source ~/blog --destination /var/www/html
+# test server http://localhost:4000/
+# automatically watches directory for changes
+# $ jekyll serve # optional --no-watch --detach
+
+# deploy
+# $ jekyll build --source ~/blog --destination /var/www/html
