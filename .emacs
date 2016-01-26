@@ -62,12 +62,12 @@
   :config
     (global-linum-mode t)
     (linum-relative-on))
-    ;; Adds space after line number
-	(defadvice linum-update-window (around linum-dynamic activate)
-	(let* ((w (length (number-to-string
-						(count-lines (point-min) (point-max)))))
-			(linum-format (concat "%" (number-to-string w) "d ")))
-		ad-do-it))
+    ;; Adds space after line number (does not work)
+	;; (defadvice linum-update-window (around linum-dynamic activate)
+	;; (let* ((w (length (number-to-string
+	;; 					(count-lines (point-min) (point-max)))))
+	;; 		(linum-format (concat "%" (number-to-string w) "d ")))
+	;; 	ad-do-it))
 
 ;; [clang]
 ;; clang format
