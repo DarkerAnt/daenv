@@ -157,3 +157,7 @@
 (use-package evil-smartparens
   :ensure t
   :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+
+;; org mode support
+(use-package evil-org
+  :ensure t)
