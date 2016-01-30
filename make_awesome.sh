@@ -5,7 +5,7 @@ source utils/install.sh
 # [init env]
 mkdir ~/src
 # compilers and interpreters
-pkg_install gcc g++ clang python3
+pkg_install gcc gcc-c++ clang python3
 
 # [zsh]
 pkg_install zsh
