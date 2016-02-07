@@ -6,6 +6,7 @@ source utils/install.sh
 mkdir ~/src
 # compilers and interpreters
 pkg_install gcc gcc-c++ clang python3
+link_file .gdbinit ~/
 
 # [zsh]
 pkg_install zsh
