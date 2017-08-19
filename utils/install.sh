@@ -5,5 +5,5 @@ function pkg_install() {
 }
 
 function link_file() {
-    ln -s ${dirname%%/}$1 $2
+    ln -si $(readlink -f $1) $2
 }

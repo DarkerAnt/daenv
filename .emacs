@@ -5,8 +5,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
- '(inhibit-startup-screen t))
+	("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
+ '(inhibit-startup-screen t)
+ '(package-selected-packages
+   (quote
+	(markdown-mode use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil-smartparens evil-org company-irony color-theme-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -54,7 +57,12 @@
 ;; [evil mode]
 (use-package evil
   :ensure t
-  :init (evil-mode 1))
+  :init (evil-mode 1)
+  :config
+    (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+    (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+    (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+    (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
 
 ;; relative line numbers
 (use-package linum-relative
