@@ -8,14 +8,14 @@ source utils/install.sh
 # [init env]
 mkdir ~/src
 # compilers and interpreters
-pkg_install gcc gcc-c++ clang python3
+pkg_install gcc gcc-c++ clang clang-devel python3 llvm llvm-devel
 link_file .gdbinit ~/
 
 # [tmux]
 link_file .tmux.conf ~/
 
 # [text editors]
-pkg_install emacs nano vim
+pkg_install emacs nano vim the_silver_searcher
 pkg_install global global-ctags
 # clang format
 git clone https://github.com/llvm-mirror/clang.git ~/src/clang
