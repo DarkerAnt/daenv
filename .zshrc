@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/avardaro/.local/bin:/home/avardaro/bin:/home/avardaro/src/clang_complete/bin"
+export PATH="/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$HOME/bin:$HOME/src/clang_complete/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -85,9 +85,3 @@ source $ZSH/oh-my-zsh.sh
 alias emacs='emacs -nw'
 
 export CLANG_SRC_PATH=~/src/clang
-
-function source() {
-    if [[ $# -eq 0 ]]; then
-	source ~/.zshrc
-    fi
-}

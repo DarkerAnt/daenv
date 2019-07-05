@@ -5,11 +5,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-	("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(markdown-mode use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil-smartparens evil-org company-irony color-theme-solarized))))
+    (markdown-mode evil-org evil-smartparens smartparens use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil diminish company-irony color-theme-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,6 +30,9 @@
    '("melpa" . "http://melpa.org/packages/")
    t)
     (package-initialize))
+
+;; ido-mode
+(ido-mode 1)
 
 ;; use-package
 (setq package-list '(use-package))
@@ -59,10 +62,11 @@
   :ensure t
   :init (evil-mode 1)
   :config
-    (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-    (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-    (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-    (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
+     ;; Switch windows with Vim keybindings
+     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+     (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+     (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
 
 ;; relative line numbers
 (use-package linum-relative
@@ -76,6 +80,87 @@
 	;; 					(count-lines (point-min) (point-max)))))
 	;; 		(linum-format (concat "%" (number-to-string w) "d ")))
 	;; 	ad-do-it))
+
+;; Source code navigation and auto-completion
+
+;-----------------------------;
+;        C++ Indentation, Thanks to Joe L.
+;-----------------------------;
+
+(c-add-style "uatc-c-style"
+  '((c-auto-newline                 . nil)
+    (c-basic-offset                 . 4)
+    (c-comment-only-line-offset     . 0)
+    (c-hanging-braces-alist         . ((substatement-open after)
+                                       (brace-list-open)))
+    (c-offsets-alist                . ((arglist-close . c-lineup-arglist)
+                                       (case-label . 4)
+                                       (substatement-open . 0)
+                                       (block-open . 0) ; no space before {
+                                       (inline-open . 0) ; no space before {
+                                       (knr-argdecl-intro . -)
+                                       (innamespace . 0)))
+    (c-hanging-colons-alist         . ((member-init-intro before)
+                                       (inher-intro)
+                                       (case-label after)
+                                       (label after)
+                                       (access-label after)))
+    (c-cleanup-list                 . (scope-operator
+                                       empty-defun-braces
+                                       defun-close-semi))))
+
+(setq-default indent-tabs-mode nil)
+(c-set-offset 'comment-intro 0)
+(setq c-default-style "uatc-c-style")
+; delete whitespace from end of lines
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; commented to try company
+;; (use-package rtags
+;;   :ensure t
+;;   :config
+;;     (setq rtags-autostart-diagnostics t)
+;; 	(setq rtags-completions-enabled t)
+;; 	(push 'company-rtags company-backends)
+;;     (global-company-mode)
+;;     (setq rtags-show-containing-function t) ;; display function name in rtags-imenu
+;; 	(rtags-enable-standard-keybindings)
+;; 	(define-key c-mode-base-map (kbd "M-=") (function rtags-symbol-type))
+;; 	(define-key c-mode-base-map (kbd "C-]") (function rtags-find-symbol-at-point))
+;; 	(define-key c-mode-base-map (kbd "C-}") (function rtags-find-references-at-point))
+;; 	(define-key c-mode-base-map (kbd "C-t") (function rtags-location-stack-back))
+;; 	;;(define-key c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
+;; 	(define-key c-mode-base-map (kbd "M-,") (function rtags-find-references-current-file))
+;; 	(define-key c-mode-base-map (kbd "M-/") (function rtags-find-all-references-at-point))
+;; 	(define-key c-mode-base-map (kbd "M-i") (function rtags-imenu))
+;; 	(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete)))
+;; ;; broken??? causes emacs to freeze
+;; ;;    (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+;; ;;    (add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running))
+
+;; (use-package flycheck-rtags
+;;   :ensure t)
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (global-flycheck-mode)
+;;   :config
+;;     (require 'flycheck-rtags))
+
+;; (defun my-flycheck-rtags-setup ()
+;;   (flycheck-select-checker 'rtags)
+;;   (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;;   (setq-local flycheck-check-syntax-automatically nil))
+;; ;; c-mode-common-hook is also called by c++-mode
+;; (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+
+;; ;; broken
+;; ;; ;; highlight > 120 character lines
+;; ;; (setq column-enforce-column 121)
+;; ;; (global-column-enforce-mode)
+
+(use-package company
+  :ensure t)
 
 ;; [clang]
 ;; clang format
@@ -168,7 +253,9 @@
 
 ;; org mode support
 (use-package evil-org
-  :ensure t)
+  :ensure t
+  :init
+    (setq org-src-fontify-natively t))
 
 ;; [markdown]
 (use-package markdown-mode

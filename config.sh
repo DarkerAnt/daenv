@@ -33,6 +33,8 @@ fi
 
 if [ "$OS_NAME" == "Fedora" ]; then
     PKG_MGR=dnf
+elif [ "$OS_NAME" == "Ubuntu" ]; then
+    PKG_MGR=apt-get
 else
     # bail out
     echo "Failed to map distro info to package manager"
