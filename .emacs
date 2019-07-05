@@ -169,6 +169,7 @@
 
 ;; [c/c++ ide]
 ;; code completion
+;; Note: M-x irony-install server add -DLIBCLANG_LIBRARY=/usr/lib/llvm-6.0/lib/libclang.so -DLIBCLANG_INCLUDE_DIR=/usr/lib/llvm-6.0/include/ -DCLANG_RESOURCE_DIR=/usr/lib/llvm-6.0/
 (use-package company-irony
   :ensure t
   :config

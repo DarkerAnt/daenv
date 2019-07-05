@@ -9,9 +9,9 @@ source utils/install.sh
 mkdir ~/src
 # compilers and interpreters
 declare -A DT_MAP
-DT_MAP[common]="gcc clang python3 llvm"
+DT_MAP[common]="clang cmake gcc llvm python3"
 DT_MAP["Fedora"]="gcc-c++ clang-devel llvm-devel"
-DT_MAP["Ubuntu"]="g++ clang-dev llvm-dev"
+DT_MAP["Ubuntu"]="g++ clang-dev libclang-dev llvm-dev"
 pkg_install ${DT_MAP[common]} ${DT_MAP[$OS_NAME]}
 link_file .gdbinit ~/
 
