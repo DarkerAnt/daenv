@@ -9,7 +9,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (markdown-mode evil-org evil-smartparens smartparens use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil diminish company-irony color-theme-solarized))))
+    (go-mode markdown-mode evil-org evil-smartparens smartparens use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil diminish company-irony color-theme-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -267,3 +267,7 @@
 	(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 	(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 	(add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1))))
+
+;; [Golang Support]
+(use-package go-mode
+  :ensure t)
