@@ -85,3 +85,5 @@ source $ZSH/oh-my-zsh.sh
 alias emacs='emacs -nw'
 
 export CLANG_SRC_PATH=~/src/clang
+
+source $HOME/work-dotfiles/.zshrc
