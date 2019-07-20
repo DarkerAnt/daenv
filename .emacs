@@ -9,7 +9,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (go-mode markdown-mode evil-org evil-smartparens smartparens use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil diminish company-irony color-theme-solarized))))
+    (matlab-mode go-mode markdown-mode evil-org evil-smartparens smartparens use-package linum-relative irony-eldoc helm-gtags flycheck-irony evil diminish company-irony color-theme-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -271,3 +271,8 @@
 ;; [Golang Support]
 (use-package go-mode
   :ensure t)
+
+;; [GNU Octave / Matlab Support]
+(use-package matlab-load
+  :ensure matlab-mode
+  :mode ("\\.m\\'" . matlab-mode))
