@@ -31,12 +31,13 @@ else
     OS_VERSION=$(uname -r)
 fi
 
-if [ "$OS_NAME" == "Fedora" ]; then
+if [[ "$OS_NAME" == "Fedora"* ]]; then
+    OS_NAME="Fedora"
     PKG_MGR=dnf
 elif [ "$OS_NAME" == "Ubuntu" ]; then
     PKG_MGR=apt-get
 else
     # bail out
-    echo "Failed to map distro info to package manager"
+    echo "Failed to map distro info to package manager for OS_NAME=${OS_NAME}"
     exit 1
 fi

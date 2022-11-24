@@ -1,12 +1,13 @@
 #!/bin/bash
+set -eo pipefail
 
 # Make the directory of this script our local directory so that local paths resolve correctly.
-pushd $(dirname $(readlink -f ${BASH_SOURCE[0]}))
+pushd $(dirname $(realpath $0))
 
 source utils/install.sh
 
 # [init env]
-mkdir ~/src
+mkdir -p ~/src
 # compilers and interpreters
 declare -A DT_MAP
 DT_MAP[common]="clang cmake gcc llvm python3"
